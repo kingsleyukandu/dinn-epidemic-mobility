@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "verified_utc": "2026-10-11T21:17:38.477773+00:00",
+  "pages": 6,
+  "native_editable_math_blocks": 4,
+  "tables": 6,
+  "figures": 2,
+  "source_inputs_verified": 26,
+  "unchanged_step4_2_payloads": 249,
+  "unchanged_step4_3_assets": 20,
+  "checks": [
+    "All original payload hashes unchanged",
+    "All input and Markdown hashes match",
+    "Report numerical tables match verified CSV rows",
+    "Worst residual checked against nine metrics",
+    "Native math retained in DOCX",
+    "All six pages rendered and visually reviewed",
+    "No title border or out-of-page text"
+  ],
+  "deliverables": [
+    {
+      "path": "/workspace/scratch/37628b9f5e4a/output/step4_4/DINN_Project_Report.pdf",
+      "sha256_before_upload": "7c14f4449ecb6193687de1b19c600f5a78f83f9b67f8a9e21f0246cbc0b3529a"
+    },
+    {
+      "path": "/workspace/scratch/37628b9f5e4a/output/step4_4/DINN_Project_Report.docx",
+      "sha256_before_upload": "96b9bb3e5c7f8cf0858200bff46e37de6ff639926b43b0e705f10f914ba9eb49"
+    }
+  ]
+}

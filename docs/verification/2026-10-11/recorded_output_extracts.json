@@ -1,0 +1,161 @@
+{
+  "created_utc": "2026-10-11T21:32:43.650155+00:00",
+  "public_original_commit": "3c6275393c7f2aea437683c0e077996e6bff5d45",
+  "later_release_commit": null,
+  "later_publication_status": "pending",
+  "operation": "Exact excerpts and file inventory from existing records; no training.",
+  "items": [
+    {
+      "id": "original_run_1",
+      "source": "results/original/2026-10-11/run_1/metrics.json",
+      "source_sha256": "982e348b01ba78a4ef49dd72de81a788fc38472390ef7e5f3def9f37981c366c",
+      "selected_keys": [
+        "utc_time",
+        "true_parameters",
+        "recovered_parameters",
+        "relative_errors_percent",
+        "negative_entries",
+        "population_conservation_max_abs_error",
+        "equation_residual_max_abs_per_day",
+        "initial_condition_max_abs_error"
+      ],
+      "fields": {
+        "utc_time": "2026-10-11T19:00:06.356462+00:00",
+        "true_parameters": {
+          "beta": 0.5,
+          "gamma": 0.2,
+          "omega": 0.07142857142857142
+        },
+        "recovered_parameters": {
+          "beta": 0.5001630187034607,
+          "gamma": 0.2000196874141693,
+          "omega": 0.07149748504161835
+        },
+        "relative_errors_percent": {
+          "beta": 0.03260374069213867,
+          "gamma": 0.00984370708465021,
+          "omega": 0.09647905826569159
+        },
+        "negative_entries": 46,
+        "population_conservation_max_abs_error": 0.0015791654586791992,
+        "equation_residual_max_abs_per_day": 0.0004345141351222992,
+        "initial_condition_max_abs_error": 0.0002733932266235639
+      },
+      "omitted_keys": [
+        "configuration",
+        "environment",
+        "initial_parameter_guesses",
+        "relative_errors_fraction",
+        "all_parameter_errors_below_0_1_percent",
+        "final_losses",
+        "trajectory_rmse_by_compartment",
+        "trajectory_rmse_overall",
+        "equation_residual_rmse_per_day_by_compartment",
+        "minimum_by_compartment",
+        "maximum_by_compartment",
+        "independent_ode_grid_conservation_max_abs_error",
+        "recovery_death_monotonicity_min_daily_derivative",
+        "source_commit",
+        "source_notebook_sha256",
+        "source_code_sha256",
+        "source_notebook_unchanged",
+        "runtime_seconds",
+        "execution_method",
+        "instrumentation",
+        "execution_input_notebook_sha256",
+        "source_blob_sha1",
+        "source_byte_verification"
+      ]
+    },
+    {
+      "id": "two_region_clean_seed_0",
+      "source": "results/two_region/2026-10-11/clean/seed_0/metrics.json",
+      "source_sha256": "30b66697c7cb91f00a2b36e01b1bc6f4f887c2cbffc04d3e4ec25fd3eb1c37e0",
+      "selected_keys": [
+        "parameters",
+        "relative_errors_percent",
+        "trajectory_rmse",
+        "residual_max_abs_per_day",
+        "conservation_max_abs_error",
+        "initial_max_abs_error",
+        "negative_entries",
+        "minimum_D_derivative_per_day",
+        "regional_balance_residual_max_abs_per_day"
+      ],
+      "fields": {
+        "parameters": {
+          "beta1": 0.49947965538590244,
+          "gamma1": 0.20009571537311627,
+          "omega1": 0.07128007409711828,
+          "beta2": 0.3800558951063421,
+          "gamma2": 0.15999715910311565,
+          "omega2": 0.03495885685657926,
+          "tau12": 0.015038988458174776,
+          "tau21": 0.010002102460594894
+        },
+        "relative_errors_percent": {
+          "beta1": 0.1040689228195113,
+          "gamma1": 0.047857686558128165,
+          "omega1": 0.2078962640343962,
+          "beta2": 0.01470923851107218,
+          "gamma2": 0.0017755605527178253,
+          "omega2": 0.11755183834497425,
+          "tau12": 0.25992305449850744,
+          "tau21": 0.02102460594894176
+        },
+        "trajectory_rmse": 0.0002371616211406511,
+        "residual_max_abs_per_day": 0.000826742756648257,
+        "conservation_max_abs_error": 4.440892098500626e-16,
+        "initial_max_abs_error": 0.0,
+        "negative_entries": 0,
+        "minimum_D_derivative_per_day": -7.604359616362236e-06,
+        "regional_balance_residual_max_abs_per_day": 0.0006187627311352887
+      },
+      "omitted_keys": [
+        "rmse_by_state",
+        "residual_rmse_per_day",
+        "minimum_compartment",
+        "negative_D_derivative_entries"
+      ]
+    },
+    {
+      "id": "two_region_model_checks",
+      "source": "results/two_region/2026-10-11/model_checks.json",
+      "source_sha256": "a50e24d40b6cb404706b0e12fa7eb51055ffceda3b9322a572bca6f41cd048a2",
+      "selected_keys": [
+        "status"
+      ],
+      "fields": {
+        "status": "PASS"
+      },
+      "omitted_keys": [
+        "numerical_trajectory_tolerance_population_fraction",
+        "results"
+      ],
+      "selected_result_groups": [
+        "population_balance",
+        "independent_solver",
+        "symmetric_limit"
+      ],
+      "results": {
+        "population_balance": {
+          "global_rhs_sum_max_abs": 4.163336342344337e-17,
+          "regional_rhs_balance_max_abs": 3.2959746043559335e-17
+        },
+        "independent_solver": {
+          "max_abs_DOP853_Radau_difference": 7.267162260848892e-09,
+          "reference_global_balance_max_abs": 3.3306690738754696e-16,
+          "reference_region1_population_range": [
+            0.39985050924953075,
+            0.6
+          ]
+        },
+        "symmetric_limit": {
+          "max_abs_aggregate_difference_from_single_SIRD": 1.59701218915842e-09,
+          "max_abs_difference_with_sixfold_common_movement_rate": 0.0,
+          "interpretation": "Equal region sizes and identical epidemic states with symmetric flows leave the common movement scale unidentifiable."
+        }
+      }
+    }
+  ]
+}

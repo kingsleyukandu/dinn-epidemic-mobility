@@ -1,0 +1,175 @@
+{
+  "status": "PASS",
+  "verified_utc": "2026-10-11T21:36:16.134023+00:00",
+  "mapped_baseline_files": 220,
+  "original_notebook_preserved": true,
+  "historical_protocols_and_sources_preserved": true,
+  "source_and_data_hashes_verified": true,
+  "checkpoint_checks": [
+    {
+      "model": "sird",
+      "case": "clean",
+      "seed": 0,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "clean",
+      "seed": 1,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "clean",
+      "seed": 2,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "noisy",
+      "seed": 0,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "noisy",
+      "seed": 1,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "noisy",
+      "seed": 2,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "missing",
+      "seed": 0,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "missing",
+      "seed": 1,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "missing",
+      "seed": 2,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "forecast",
+      "seed": 0,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "forecast",
+      "seed": 1,
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "forecast",
+      "seed": 2,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "clean",
+      "seed": 0,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "clean",
+      "seed": 1,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "clean",
+      "seed": 2,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "noisy",
+      "seed": 0,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "noisy",
+      "seed": 1,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "noisy",
+      "seed": 2,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "missing",
+      "seed": 0,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "missing",
+      "seed": 1,
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "missing",
+      "seed": 2,
+      "status": "PASS"
+    }
+  ],
+  "baseline_checks": [
+    {
+      "model": "sird",
+      "case": "clean",
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "noisy",
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "missing",
+      "status": "PASS"
+    },
+    {
+      "model": "sird",
+      "case": "forecast",
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "clean",
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "noisy",
+      "status": "PASS"
+    },
+    {
+      "model": "two_region",
+      "case": "missing",
+      "status": "PASS"
+    }
+  ],
+  "training_rerun": false,
+  "recorded_outputs_modified": false
+}

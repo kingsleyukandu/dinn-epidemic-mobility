@@ -1,0 +1,18 @@
+{
+  "same_seed": true,
+  "same_recorded_environment": true,
+  "all_compared_metrics_identical": true,
+  "comparisons": {
+    "recovered_parameters": true,
+    "relative_errors_fraction": true,
+    "final_losses": true,
+    "trajectory_rmse_by_compartment": true,
+    "equation_residual_rmse_per_day_by_compartment": true,
+    "population_conservation_max_abs_error": true,
+    "minimum_by_compartment": true,
+    "maximum_by_compartment": true,
+    "initial_condition_max_abs_error": true
+  },
+  "first_run_utc": "2026-10-11T19:00:06.356462+00:00",
+  "repeat_run_utc": "2026-10-11T19:01:04.622380+00:00"
+}

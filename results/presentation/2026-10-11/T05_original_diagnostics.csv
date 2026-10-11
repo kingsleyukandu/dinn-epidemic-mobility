@@ -1,0 +1,6 @@
+metric,value
+trajectory_rmse_overall,0.0003816142082683668
+equation_residual_max_abs_per_day,0.0004345141351222992
+population_conservation_max_abs_error,0.0015791654586791992
+initial_condition_max_abs_error,0.0002733932266235639
+negative_entries,46

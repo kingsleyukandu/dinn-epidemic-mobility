@@ -1,1 +1,7 @@
 **/.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+runs/
+.DS_Store

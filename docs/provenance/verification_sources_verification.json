@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "verified_utc": "2026-10-11T21:34:58.747672+00:00",
+  "source_files": 106,
+  "code_extracts": 5,
+  "output_extracts": 3,
+  "existing_files_unchanged": 283,
+  "frozen_input_hashes_checked": 66,
+  "review_pdf_pages": 6,
+  "checks": [
+    "Every source hash and byte count checked",
+    "Exact code ranges and notebook cell lines checked",
+    "Selected JSON fields and omitted keys checked",
+    "README range selections checked",
+    "Report PDF copy byte-identical",
+    "Fresh regeneration matches source selections",
+    "Existing output guard checked",
+    "All six PDF pages rendered and visually reviewed; text inside page bounds"
+  ],
+  "publication_status": "No GitHub changes; release commit pending Step 4.8",
+  "scope": "Source packaging and excerpt checks only. Full package verification remains Step 4.7."
+}

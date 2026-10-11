@@ -1,0 +1,107 @@
+{
+  "frozen_before_validation_runs": true,
+  "created_utc": "2026-10-11",
+  "purpose": "Controlled synthetic validation; not clinical or operational forecasting.",
+  "configuration": {
+    "horizon": 160.0,
+    "width": 32,
+    "depth": 3,
+    "gate_scale_days": 3.2,
+    "adam_steps": 8000,
+    "lbfgs_steps": 600,
+    "learning_rate": 0.001,
+    "physics_weight": 0.0001,
+    "collocation_points": 161,
+    "dtype": "float64"
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "initial_rates": [
+    0.8,
+    0.1,
+    0.15
+  ],
+  "truth": {
+    "beta": 0.5,
+    "gamma": 0.2,
+    "omega": 0.07142857142857142
+  },
+  "initial_state": [
+    0.999999,
+    1e-06,
+    0.0,
+    0.0
+  ],
+  "observation_states": [
+    "S",
+    "I",
+    "R",
+    "D"
+  ],
+  "clean": {
+    "observations": 54,
+    "days": "0 to 159 inclusive, every 3 days"
+  },
+  "noisy": {
+    "sigma_population_fraction": 0.002,
+    "rng_seed": 20261011,
+    "noise": "Independent additive Gaussian on all states; no clipping or renormalization.",
+    "negative_measurements": 25
+  },
+  "missing": {
+    "removed_timepoints": [
+      3.0,
+      45.0,
+      51.0,
+      54.0,
+      66.0,
+      72.0,
+      87.0,
+      102.0,
+      105.0,
+      111.0,
+      114.0,
+      117.0,
+      123.0,
+      135.0,
+      138.0,
+      156.0
+    ],
+    "retained": 38,
+    "rng_seed": 20261012
+  },
+  "forecast": {
+    "training_last_day": 60,
+    "forecast_days": [
+      61,
+      88
+    ],
+    "description": "Infer rates using only days 0 to 60 and collocation through day 60; integrate SIRD with inferred rates from the known initial state for days 61 to 88.",
+    "comparators": [
+      "ODE least squares",
+      "Persistence at day 60"
+    ]
+  },
+  "comparator": "One deterministic ODE least-squares fit per dataset with the same starting rates, observations and known initial state.",
+  "selection": "All three neural seeds reported, no best-seed selection or truth-based stopping.",
+  "dataset_sha256": {
+    "clean": "878f0108670cd815e701bf874a43b4f66015959ce8473ddde1025c11f5d6225d",
+    "noisy": "32c68b72521011ec178189d301a11eece4a21cad4ca72a7ab3de03bfb421c332",
+    "missing": "9e58a3277ff33dbfdad1f3022aced8776750aa372c3b595b616cf8174b598ad3",
+    "forecast": "4e1d91cbd174314283b263a0e5ee62afaf0746985b4138e6a68503869e6a852d"
+  },
+  "module_sha256": "8bb46c3e78678c621c9d3354a32a839649219c406dc77a0037b365cdaa99ae11",
+  "runner_sha256": "f43976202e53eb289b59a08b30bcb84e26e03a061a93e0a3683033834529ed51",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+    "torch_threads_per_process": 1,
+    "device": "CPU"
+  }
+}

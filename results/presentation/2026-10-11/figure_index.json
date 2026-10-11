@@ -1,0 +1,81 @@
+[
+  {
+    "id": "F01_original_sird",
+    "title": "Original SIRD reproduction",
+    "caption": "The original public notebook was reproduced on October 11, 2026. All three rate errors were below 0.1%, but the linear output permits negative states and imperfect population accounting. The fitted trajectories and synthetic truth nearly overlap at this scale; T01 and T05 retain numerical errors. These are reproduction results, not June execution dates.",
+    "sources": [
+      "results/original/2026-10-11/run_1/metrics.json",
+      "results/original/2026-10-11/run_1/trajectory_audit.csv"
+    ]
+  },
+  {
+    "id": "F02_sird_rate_recovery",
+    "title": "Constrained SIRD rate recovery",
+    "caption": "Each colored point is a network initialization seed; black crosses are direct ODE calibration. All seeds within a case use the same observations. Noisy means one fixed Gaussian noise realization (sigma 0.002); missing means 16 of 54 observation times removed, retaining both endpoints. Absolute relative error is 100 x |estimate - truth| / truth. These points are not confidence intervals.",
+    "sources": [
+      "results/sird/2026-10-11/clean/ode_baseline.json",
+      "results/sird/2026-10-11/clean/seed_0/metrics.json",
+      "results/sird/2026-10-11/clean/seed_1/metrics.json",
+      "results/sird/2026-10-11/clean/seed_2/metrics.json",
+      "results/sird/2026-10-11/noisy/ode_baseline.json",
+      "results/sird/2026-10-11/noisy/seed_0/metrics.json",
+      "results/sird/2026-10-11/noisy/seed_1/metrics.json",
+      "results/sird/2026-10-11/noisy/seed_2/metrics.json",
+      "results/sird/2026-10-11/missing/ode_baseline.json",
+      "results/sird/2026-10-11/missing/seed_0/metrics.json",
+      "results/sird/2026-10-11/missing/seed_1/metrics.json",
+      "results/sird/2026-10-11/missing/seed_2/metrics.json"
+    ]
+  },
+  {
+    "id": "F03_two_region_trajectories",
+    "title": "Two-region synthetic trajectories",
+    "caption": "Clean-data fits show all three seeds. Solid curves are fitted neural states; dashed curves are synthetic ODE truth. Lower panels show the largest absolute state error in each region at each diagnostic time. All state fractions use the initial global population, not changing regional totals.",
+    "sources": [
+      "results/two_region/2026-10-11/clean/seed_0/trajectory.csv",
+      "results/two_region/2026-10-11/clean/seed_1/trajectory.csv",
+      "results/two_region/2026-10-11/clean/seed_2/trajectory.csv"
+    ]
+  },
+  {
+    "id": "F04_two_region_rate_recovery",
+    "title": "Disease and directional mobility rate recovery",
+    "caption": "Six disease rates and two directional movement rates were estimated from all eight observed states. tau12 means region 1 to region 2; tau21 means region 2 to region 1. The same rates move S, I, and R; D does not move. Noisy uses one fixed realization (sigma 0.001 in global population fractions). Missing retains 38 of 54 times. Points reflect three initializations, not repeated datasets. ODE calibration has lower overall trajectory RMSE in all three cases.",
+    "sources": [
+      "results/two_region/2026-10-11/clean/ode_baseline.json",
+      "results/two_region/2026-10-11/clean/seed_0/metrics.json",
+      "results/two_region/2026-10-11/clean/seed_1/metrics.json",
+      "results/two_region/2026-10-11/clean/seed_2/metrics.json",
+      "results/two_region/2026-10-11/noisy/ode_baseline.json",
+      "results/two_region/2026-10-11/noisy/seed_0/metrics.json",
+      "results/two_region/2026-10-11/noisy/seed_1/metrics.json",
+      "results/two_region/2026-10-11/noisy/seed_2/metrics.json",
+      "results/two_region/2026-10-11/missing/ode_baseline.json",
+      "results/two_region/2026-10-11/missing/seed_0/metrics.json",
+      "results/two_region/2026-10-11/missing/seed_1/metrics.json",
+      "results/two_region/2026-10-11/missing/seed_2/metrics.json"
+    ]
+  },
+  {
+    "id": "F05_population_accounting",
+    "title": "Population accounting and remaining residuals",
+    "caption": "The left panel uses clean seed 0 and includes cumulative deceased states in each regional total. Movement changes regional totals while the global total remains one. Dashed regional curves are ODE truth. The right panel includes all clean seeds and shows nonzero differential-equation residuals. State nonnegativity, initial conditions, and global accounting are structural constraints; the ODE is enforced through a loss. Death monotonicity is not a structural guarantee.",
+    "sources": [
+      "results/two_region/2026-10-11/clean/seed_0/trajectory.csv",
+      "results/two_region/2026-10-11/clean/seed_1/trajectory.csv",
+      "results/two_region/2026-10-11/clean/seed_2/trajectory.csv"
+    ]
+  },
+  {
+    "id": "F06_chronological_forecast",
+    "title": "Chronological synthetic forecast test",
+    "caption": "The models used only 21 clean observations through day 60 and collocation points within that window. Estimated rates were then integrated in the SIRD ODE for days 61-88; this is not direct neural extrapolation. The right panel uses a log scale and includes all three initializations, direct ODE calibration, and day-60 persistence. One clean, correctly specified synthetic cutoff does not establish real-world forecasting accuracy. ODE calibration has the lowest RMSE.",
+    "sources": [
+      "results/sird/2026-10-11/forecast_summary.json",
+      "data/synthetic/sird/2026-10-11/forecast_observations.csv",
+      "results/sird/2026-10-11/forecast/seed_0/forecast.csv",
+      "results/sird/2026-10-11/forecast/seed_1/forecast.csv",
+      "results/sird/2026-10-11/forecast/seed_2/forecast.csv"
+    ]
+  }
+]

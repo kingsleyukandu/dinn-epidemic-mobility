@@ -1,0 +1,31 @@
+{
+  "seed": 0,
+  "configuration": {
+    "horizon": 160.0,
+    "width": 48,
+    "depth": 3,
+    "gate_scale_days": 3.2,
+    "adam_steps": 8000,
+    "lbfgs_steps": 1000,
+    "learning_rate": 0.001,
+    "physics_weight": 0.0001,
+    "collocation_points": 161
+  },
+  "initial_rates": [
+    0.7,
+    0.12,
+    0.1,
+    0.5,
+    0.1,
+    0.06,
+    0.02,
+    0.02
+  ],
+  "runtime_seconds": 56.31228796399955,
+  "lbfgs_closure_evaluations": 1250,
+  "lbfgs_iterations": 1000,
+  "final_total_loss": 6.511725460493097e-08,
+  "final_data_mse": 5.5491838766332544e-08,
+  "final_equation_mse_tau": 9.625415838598418e-05,
+  "observed_scalar_values": 432
+}

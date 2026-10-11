@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "beta": 0.4999999999999999,
+    "gamma": 0.19999999999999998,
+    "omega": 0.07142857142857131
+  },
+  "relative_errors_percent": {
+    "beta": 2.220446049250313e-14,
+    "gamma": 1.3877787807814457e-14,
+    "omega": 1.5543122344752192e-13
+  },
+  "runtime_seconds": 0.2542962770003214,
+  "optimizer_success": true,
+  "optimizer_message": "`gtol` termination condition is satisfied.",
+  "objective_calls": 40,
+  "fit_mse": 2.8655436384858574e-32,
+  "jacobian_singular_values": [
+    11.917673047397116,
+    1.2777518223661466,
+    0.960205923484852
+  ],
+  "trajectory_rmse": 1.7479255727077752e-16
+}

@@ -1,0 +1,50 @@
+seed 0 Adam 0: objective=0.035866
+seed 0 Adam 2000: objective=2.4668e-06
+seed 0 Adam 4000: objective=1.1896e-06
+seed 0 Adam 6000: objective=8.8675e-07
+{
+  "case": "noisy",
+  "seed": 0,
+  "metrics": {
+    "parameters": {
+      "beta1": 0.5006436862427482,
+      "gamma1": 0.20049006531551367,
+      "omega1": 0.07170436062790252,
+      "beta2": 0.375868130164105,
+      "gamma2": 0.15896358261510546,
+      "omega2": 0.034252159440980416,
+      "tau12": 0.014972484224541824,
+      "tau21": 0.009946677433555597
+    },
+    "relative_errors_percent": {
+      "beta1": 0.12873724854964852,
+      "gamma1": 0.24503265775682737,
+      "omega1": 0.3861048790635285,
+      "beta2": 1.0873341673407975,
+      "gamma2": 0.6477608655590904,
+      "omega2": 2.1366873114845344,
+      "tau12": 0.1834385030545042,
+      "tau21": 0.5332256644440327
+    },
+    "trajectory_rmse": 0.0003595955240617089,
+    "rmse_by_state": {
+      "S1": 0.0003517891359374917,
+      "I1": 0.00029464205747831894,
+      "R1": 0.00023314526030105548,
+      "D1": 0.0002775606225476646,
+      "S2": 0.0005114846991712957,
+      "I2": 0.0004304301253929899,
+      "R2": 0.0003084651168220817,
+      "D2": 0.0003879019966240002
+    },
+    "residual_rmse_per_day": 9.193409554604371e-05,
+    "residual_max_abs_per_day": 0.0008392611194393184,
+    "conservation_max_abs_error": 4.440892098500626e-16,
+    "initial_max_abs_error": 0.0,
+    "minimum_compartment": 0.0,
+    "negative_entries": 0,
+    "minimum_D_derivative_per_day": -9.598173607337924e-06,
+    "negative_D_derivative_entries": 279,
+    "regional_balance_residual_max_abs_per_day": 0.0006537497202618274
+  }
+}

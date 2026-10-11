@@ -1,0 +1,118 @@
+{
+  "utc_time": "2026-10-11T19:00:06.356462+00:00",
+  "configuration": {
+    "seed": 0,
+    "device": "cpu",
+    "dtype": "float32",
+    "cpu_threads": 1,
+    "hidden_width": 32,
+    "hidden_layers": 3,
+    "activation": "tanh",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "optimizer_steps": 20001,
+    "T_max_days": 160.0,
+    "population": 1000000.0,
+    "initial_state": [
+      0.999999,
+      1e-06,
+      0,
+      0
+    ],
+    "observations": 54,
+    "first_observation_day": 0.0,
+    "last_observation_day": 159.0,
+    "observation_spacing_days": 3,
+    "collocation_points": 161,
+    "audit_grid_points": 641,
+    "loss_weights": {
+      "data": 1.0,
+      "equations": 0.0001,
+      "initial": 1.0
+    }
+  },
+  "environment": {
+    "python": "3.12.14",
+    "torch": "2.14.1+cpu",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "matplotlib": "3.10.8",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39"
+  },
+  "true_parameters": {
+    "beta": 0.5,
+    "gamma": 0.2,
+    "omega": 0.07142857142857142
+  },
+  "initial_parameter_guesses": {
+    "beta": 0.8,
+    "gamma": 0.1,
+    "omega": 0.15
+  },
+  "recovered_parameters": {
+    "beta": 0.5001630187034607,
+    "gamma": 0.2000196874141693,
+    "omega": 0.07149748504161835
+  },
+  "relative_errors_fraction": {
+    "beta": 0.0003260374069213867,
+    "gamma": 9.84370708465021e-05,
+    "omega": 0.0009647905826569159
+  },
+  "relative_errors_percent": {
+    "beta": 0.03260374069213867,
+    "gamma": 0.00984370708465021,
+    "omega": 0.09647905826569159
+  },
+  "all_parameter_errors_below_0_1_percent": true,
+  "final_losses": {
+    "data_mse": 1.5155310961745272e-07,
+    "initial_condition_mse": 3.6082845156215626e-08,
+    "equation_residual_mse_tau_training_grid": 0.0003081263857893646,
+    "weighted_total": 2.184485933526048e-07
+  },
+  "trajectory_rmse_by_compartment": {
+    "s": 0.0003938128908260072,
+    "i": 0.00048075258565381145,
+    "r": 0.00035118190080158496,
+    "d": 0.00027014301169009267
+  },
+  "trajectory_rmse_overall": 0.0003816142082683668,
+  "equation_residual_rmse_per_day_by_compartment": {
+    "s": 0.0001343761832686141,
+    "i": 0.00011686563811963424,
+    "r": 0.00012188601976959035,
+    "d": 4.0231341699836776e-05
+  },
+  "equation_residual_max_abs_per_day": 0.0004345141351222992,
+  "population_conservation_max_abs_error": 0.0015791654586791992,
+  "minimum_by_compartment": {
+    "s": 0.25190290808677673,
+    "i": -0.00027507543563842773,
+    "r": -1.5333294868469238e-05,
+    "d": -0.00010858476161956787
+  },
+  "maximum_by_compartment": {
+    "s": 1.0003756284713745,
+    "i": 0.12680584192276,
+    "r": 0.5513109564781189,
+    "d": 0.1969139575958252
+  },
+  "negative_entries": 46,
+  "initial_condition_max_abs_error": 0.0002733932266235639,
+  "independent_ode_grid_conservation_max_abs_error": 1.1102230246251565e-15,
+  "recovery_death_monotonicity_min_daily_derivative": {
+    "r": -1.5224795788526535e-05,
+    "d": -6.605550879612565e-05
+  },
+  "source_commit": "3c6275393c7f2aea437683c0e077996e6bff5d45",
+  "source_notebook_sha256": "3db707e85188125567bf91d3b1d1aed860ec37029142bc6cb5ad36da4c572e20",
+  "source_code_sha256": "7994f275e80c57b4c702efdff27cc34eead0826a0992bdc72fcf2e3a5f3ba0e0",
+  "source_notebook_unchanged": true,
+  "runtime_seconds": 45.00422239303589,
+  "execution_method": "Plain Python code cells executed sequentially in a fresh Python process; outputs saved as a notebook. No prior interactive state.",
+  "instrumentation": "One CPU thread; detached logging every 100 steps; appended diagnostics. Training mathematics unchanged.",
+  "execution_input_notebook_sha256": "ad70707c9ce79ed6b427b9b64efe5f663ef7a952f2fe9a380804864ad84f8cd4",
+  "source_blob_sha1": "2585e90aba6c964101b55e642a62279ea3318ece",
+  "source_byte_verification": "Matches the GitHub blob after removing one transport-added trailing newline. Parsed notebook cells and training code are unchanged."
+}

@@ -1,0 +1,159 @@
+{
+  "frozen_before_validation_runs": true,
+  "created_utc": "2026-10-11T19:38:59.118545+00:00",
+  "purpose": "Controlled synthetic two-region SIRD mobility implementation and validation.",
+  "configuration": {
+    "horizon": 160.0,
+    "width": 48,
+    "depth": 3,
+    "gate_scale_days": 3.2,
+    "adam_steps": 8000,
+    "lbfgs_steps": 1000,
+    "learning_rate": 0.001,
+    "physics_weight": 0.0001,
+    "collocation_points": 161
+  },
+  "seeds": [
+    0,
+    1,
+    2
+  ],
+  "initial_rates": [
+    0.7,
+    0.12,
+    0.1,
+    0.5,
+    0.1,
+    0.06,
+    0.02,
+    0.02
+  ],
+  "synthetic_truth": {
+    "beta1": 0.5,
+    "gamma1": 0.2,
+    "omega1": 0.07142857142857142,
+    "beta2": 0.38,
+    "gamma2": 0.16,
+    "omega2": 0.035,
+    "tau12": 0.015,
+    "tau21": 0.01
+  },
+  "initial_state": {
+    "S1": 0.59999,
+    "I1": 1e-05,
+    "R1": 0.0,
+    "D1": 0.0,
+    "S2": 0.39999900000000005,
+    "I2": 1e-06,
+    "R2": 0.0,
+    "D2": 0.0
+  },
+  "reference_region_population_fractions": [
+    0.6,
+    0.4
+  ],
+  "model": {
+    "state_units": "Fractions of combined initial population, including cumulative deaths.",
+    "incidence": "beta_j*S_j*I_j/p_j with fixed initial regional reference p_j.",
+    "movement": "tau12 is region 1 to 2; tau21 is region 2 to 1; common to S, I, R; D does not move.",
+    "hard_constraints": [
+      "Nonnegative neural states",
+      "Combined accounted population equals one",
+      "Exact initial neural state"
+    ],
+    "soft_constraints": [
+      "ODE residuals",
+      "Regional balance identity",
+      "Nondecreasing deceased trajectories"
+    ]
+  },
+  "observations": {
+    "states": [
+      "S1",
+      "I1",
+      "R1",
+      "D1",
+      "S2",
+      "I2",
+      "R2",
+      "D2"
+    ],
+    "known_initial_state": true,
+    "clean": {
+      "timepoints": 54,
+      "days": "0,3,...,159"
+    },
+    "noisy": {
+      "rng_seed": 20261013,
+      "sigma_combined_population_fraction": 0.001,
+      "measurement_noise": "Independent Gaussian; no clipping or renormalization.",
+      "negative_measurements": 40
+    },
+    "missing": {
+      "rng_seed": 20261014,
+      "removed_days": [
+        6.0,
+        15.0,
+        21.0,
+        51.0,
+        60.0,
+        72.0,
+        75.0,
+        78.0,
+        84.0,
+        87.0,
+        90.0,
+        114.0,
+        117.0,
+        126.0,
+        144.0,
+        150.0
+      ],
+      "retained_timepoints": 38
+    }
+  },
+  "ode_comparator": {
+    "same_observations_initial_state_and_starting_rates": true,
+    "method": "Least squares on log rates; DOP853 integration.",
+    "disease_rate_bounds": [
+      0.0001,
+      3.0
+    ],
+    "movement_rate_bounds": [
+      1e-05,
+      0.5
+    ]
+  },
+  "selection": "All final seeds reported. Fixed optimizer budget; no true-error stopping or best-seed selection.",
+  "development_pilot": "One seed-0 clean pilot preceded the fixed protocol; excluded from validation totals.",
+  "environment": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "torch": "2.14.1+cpu",
+    "dtype": "float64",
+    "torch_threads_per_process": 1,
+    "device": "CPU",
+    "platform": "Linux-6.18.44-x86_64-with-glibc2.39"
+  },
+  "source_sha256": {
+    "src/two_region_sird.py": "d242875312fee7f30293972d43f23203cff932b22bc408258226b031d92a2e67",
+    "src/sird_validation.py": "8bb46c3e78678c621c9d3354a32a839649219c406dc77a0037b365cdaa99ae11",
+    "scripts/validate_step3.py": "cbadc006ace413de731f14ab73d41bac3f88a816ef122b8d44ae1f4a14731e1a",
+    "scripts/check_step3_model.py": "dafa4d1e485cb2c680e02a76656de1741400bf8aac0972e1dc7558bb7da74b31"
+  },
+  "dataset_sha256": {
+    "clean": "2e73a0bb7fb305699cc0841038ad27042965665e9bce7298dbb182466658289c",
+    "noisy": "0f6bc6af0f5a19dae87bbd4708c6b8a50b729bb6e5d555ac7c1cb17a4540d198",
+    "missing": "ff63c800079057832dea6da3e5f5651b67e03f776c9de6d2a25766713b7a8d7b"
+  },
+  "original_source_commit": "3c6275393c7f2aea437683c0e077996e6bff5d45",
+  "original_notebook_git_blob": "2585e90aba6c964101b55e642a62279ea3318ece",
+  "limitations": [
+    "All eight states observed; fixed known initial state.",
+    "Only three neural initializations and one fixed dataset per imperfection.",
+    "No real surveillance or mobility data; no forecast or uncertainty benchmark in Step 3.",
+    "Common S/I/R movement and fixed reference transmission denominators are assumptions.",
+    "Symmetric balanced regions do not identify the common movement scale."
+  ]
+}

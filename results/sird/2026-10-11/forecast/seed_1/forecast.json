@@ -1,0 +1,7 @@
+{
+  "method": "SIRD integration using DINN-inferred rates",
+  "rmse_all_states": 0.00041621018058307364,
+  "infected_mae": 0.00017488248802275847,
+  "persistence_rmse_all_states": 0.1566151879252991,
+  "persistence_infected_mae": 0.0780681417175252
+}

@@ -1,0 +1,239 @@
+{
+  "status": "PASS",
+  "verified_utc": "2026-10-11T21:39:53.028488+00:00",
+  "phase": "Step 4.7 package verification",
+  "recorded_checkpoints": 21,
+  "ode_comparators": 7,
+  "preserved_baseline_paths": 220,
+  "mathematical_checks": "Single-region and two-region checks passed; fresh two-region check output retained.",
+  "notebook": {
+    "status": "PASS",
+    "notebooks_validated": [
+      "sird-dinn.ipynb",
+      "two-region-sird-dinn.ipynb"
+    ],
+    "walkthrough_code_cells_executed": 5,
+    "retrained": false,
+    "checkpoint_metrics_exact_match": true,
+    "installed_dependencies": {
+      "numpy": "2.3.5",
+      "scipy": "1.17.0",
+      "torch": "2.14.1+cpu",
+      "matplotlib": "3.10.8",
+      "nbformat": "5.11.1"
+    }
+  },
+  "package_checks": {
+    "maintained_python_modules_compiled": 14,
+    "readme_local_links": 23,
+    "manifest_file_counts": {
+      "docs/report/report_source_manifest.json": 26,
+      "results/presentation/2026-10-11/asset_manifest.json": 60,
+      "docs/provenance/verification_sources_manifest.json": 10
+    },
+    "source_inventory_files": 106,
+    "byte_identical_regenerated_assets": 20,
+    "identical_original_repeatability_fields": 7,
+    "report_pdf_pages": 6,
+    "publication_content_review": {
+      "credential_pattern_matches": 0,
+      "historical_planning_note_paths": [
+        "archive/2026-10-11/report_builders/build_step2_report.py",
+        "archive/2026-10-11/report_builders/build_step3_report.py",
+        "archive/2026-10-11/source/validation/step3/REPRODUCE.md"
+      ],
+      "disposition": "Reviewed: generic future exhibit/petition sequencing notes in historical records; no petition text or expert letters. Retained to preserve the historical source hashes.",
+      "private_crosswalk": "Outside repository and publication candidate.",
+      "scan_scope": "Text files, notebook source and text outputs. Embedded notebook images excluded from token scanning to avoid base64 false positives. This is a pattern review, not a comprehensive security assessment."
+    },
+    "baseline_files_unchanged": 291,
+    "candidate_payload_files": 291,
+    "candidate_payload_bytes": 12576242
+  },
+  "relocated_package_verification": {
+    "status": "PASS",
+    "verified_utc": "2026-10-11T21:39:12.688047+00:00",
+    "mapped_baseline_files": 220,
+    "original_notebook_preserved": true,
+    "historical_protocols_and_sources_preserved": true,
+    "source_and_data_hashes_verified": true,
+    "checkpoint_checks": [
+      {
+        "model": "sird",
+        "case": "clean",
+        "seed": 0,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "clean",
+        "seed": 1,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "clean",
+        "seed": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "noisy",
+        "seed": 0,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "noisy",
+        "seed": 1,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "noisy",
+        "seed": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "missing",
+        "seed": 0,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "missing",
+        "seed": 1,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "missing",
+        "seed": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "forecast",
+        "seed": 0,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "forecast",
+        "seed": 1,
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "forecast",
+        "seed": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "clean",
+        "seed": 0,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "clean",
+        "seed": 1,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "clean",
+        "seed": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "noisy",
+        "seed": 0,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "noisy",
+        "seed": 1,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "noisy",
+        "seed": 2,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "missing",
+        "seed": 0,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "missing",
+        "seed": 1,
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "missing",
+        "seed": 2,
+        "status": "PASS"
+      }
+    ],
+    "baseline_checks": [
+      {
+        "model": "sird",
+        "case": "clean",
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "noisy",
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "missing",
+        "status": "PASS"
+      },
+      {
+        "model": "sird",
+        "case": "forecast",
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "clean",
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "noisy",
+        "status": "PASS"
+      },
+      {
+        "model": "two_region",
+        "case": "missing",
+        "status": "PASS"
+      }
+    ],
+    "training_rerun": false,
+    "recorded_outputs_modified": false
+  },
+  "original_public_commit": "3c6275393c7f2aea437683c0e077996e6bff5d45",
+  "github_changes_made": false,
+  "later_release_commit": null,
+  "scope": "Saved-checkpoint verification and read-only regeneration. Training was not rerun; no fresh dependency installation was performed. Existing pinned dependencies were checked against installed versions.",
+  "scientific_limits": [
+    "Fully observed, correctly specified synthetic data and known initial conditions.",
+    "ODE residuals and monotonicity remain approximate.",
+    "ODE calibration is more accurate on these benchmarks.",
+    "SIS adaptation, empirical data and uncertainty studies remain future work."
+  ],
+  "next_operation": "Publish the reviewed revision in Step 4.8 only after separate user authorization; then assign permanent release links."
+}
