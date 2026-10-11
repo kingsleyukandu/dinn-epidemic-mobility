@@ -1,0 +1,20 @@
+{
+  "parameters": {
+    "beta": 0.4996962963786483,
+    "gamma": 0.19996027361661398,
+    "omega": 0.07145393105947764
+  },
+  "relative_errors_percent": {
+    "beta": 0.060740724270336166,
+    "gamma": 0.019863191693017535,
+    "omega": 0.035503483268706226
+  },
+  "trajectory_rmse": 0.000494649206445407,
+  "residual_rmse_per_day": 8.911363686627686e-05,
+  "residual_max_abs_per_day": 0.0003940581370175487,
+  "conservation_max_abs_error": 4.440892098500626e-16,
+  "initial_max_abs_error": 0.0,
+  "minimum_compartment": 0.0,
+  "negative_entries": 0,
+  "maximum_compartment": 0.999999
+}

@@ -1,0 +1,23 @@
+{
+  "parameters": {
+    "beta": 0.5003402792616943,
+    "gamma": 0.20008723750222415,
+    "omega": 0.07163770808250142
+  },
+  "relative_errors_percent": {
+    "beta": 0.06805585233886635,
+    "gamma": 0.043618751112070586,
+    "omega": 0.292791315501989
+  },
+  "runtime_seconds": 0.2759713229997942,
+  "optimizer_success": true,
+  "optimizer_message": "`ftol` termination condition is satisfied.",
+  "objective_calls": 41,
+  "fit_mse": 3.761593711279198e-06,
+  "jacobian_singular_values": [
+    15.014594075516397,
+    1.6006122351224443,
+    1.215369637133943
+  ],
+  "trajectory_rmse": 0.00026164471031581073
+}

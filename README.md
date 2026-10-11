@@ -1,541 +1,127 @@
-# Disease-Informed Neural Networks for Epidemic Mobility Models: From SIRD Parameter Discovery to SIS Patch Equilibria
+# Disease-Informed Neural Networks for Epidemic Dynamics and Population Mobility
 
-## Project Overview
+Reproducible SIRD parameter estimation and two-region synthetic benchmarks
 
-This project is a learning-to-research project focused on understanding how to customize **Physics-Informed Neural Networks (PINNs)** into **Disease-Informed Neural Networks (DINNs)** for epidemic models.
+**Kingsley Chimuanya Ukandu**
 
-The goal is not simply to run a neural network on epidemic data. The goal is to learn how to design a neural network that respects the governing differential equations of a disease model while also using data to discover unknown disease parameters.
+This project estimates disease and population movement rates by fitting neural epidemic trajectories to synthetic observations and differential equations. It includes the original SIRD notebook, a separate implementation with exact state constraints, and a two-region SIRD model with directional movement.
 
-The project develops in three stages:
+The recorded experiments recover known rates with small errors and retain every final initialization seed. Direct ODE calibration is more accurate on these benchmarks. The work provides an implementation and reproducible validation records for further research; it does not establish performance on real surveillance or mobility data.
 
-1. **Basic SIRD-DINN for parameter discovery**
-   Build a neural network that learns the trajectory of a basic SIRD epidemic model and recovers hidden parameters such as transmission, recovery, and mortality rates.
+Start with the [project report](docs/report/project_report.md) for the methods and findings. The DINN framework comes from [Shaier, Raissi, and Seshaiyer (2022)](https://arxiv.org/abs/2110.05445v3).
 
-2. **SIRD-DINN with population movement**
-   Extend the basic SIRD model to two interacting regions where individuals can move between populations.
+## Check the recorded results
 
-3. **Transfer to a multipatch SIS model**
-   Adapt the DINN/PINN framework to a multipatch SIS epidemic model with mass-action infection and complex endemic equilibrium structure.
+From this repository's root, use Python 3.12 and a separate environment. The activation command below is for Linux or macOS.
 
-The broader aim is to become comfortable customizing DINNs across different epidemic models, especially models involving spatial heterogeneity, population movement, and nonlinear disease dynamics.
-
----
-
-## What is a PINN?
-
-A **Physics-Informed Neural Network**, or **PINN**, is a neural network trained not only to fit data, but also to satisfy a governing differential equation.
-
-In a standard machine-learning model, the network is usually trained by minimizing prediction error:
-
-```text
-prediction - observed data
+```bash
+python3.12 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python scripts/verify_recorded_results.py
 ```
 
-A PINN adds another requirement: the prediction should obey the mathematical law that governs the system.
+On Windows PowerShell, create the environment with `py -3.12 -m venv .venv` and activate it with `.venv\Scripts\Activate.ps1`.
 
-For a differential equation such as
+The verifier checks the preserved original notebook, historical source and observation hashes, all **21 later neural checkpoints**, and **seven ODE calibration objectives**. It recomputes checkpoint diagnostics and the three single-region forecast errors without retraining or changing recorded results. A successful run prints `PASS`.
 
-```text
-du/dt = f(u, t, parameters),
+The [two-region notebook](notebooks/two-region-sird-dinn.ipynb) loads the recorded clean seed-0 checkpoint by default. The [original notebook](notebooks/sird-dinn.ipynb) is retained unchanged. See the [recorded environment](docs/reproduction/environment.md) for dependencies and execution settings.
+
+## Completed work
+
+| Stage | Implementation and checks | Recorded runs |
+| --- | --- | --- |
+| Original SIRD | Preserved public notebook; independent reproduction and state diagnostics | Two fresh-process runs with the same seed |
+| Constrained SIRD | Nonnegative states, exact initial state, population sum one; clean, noisy, missing, and chronological holdout conditions | 12 neural fits and four ODE calibrations |
+| Two-region SIRD | Six disease rates and two movement rates; balance, limiting-case, solver, and derivative checks | Nine neural fits and three ODE calibrations |
+
+All experiments reported here are dated **October 11, 2026**. The original notebook was already present in the public source version dated **June 19, 2026**. The later experiments are distinct from that earlier version. Development pilots remain separate from final validation totals.
+
+## Models and assumptions
+
+SIRD tracks susceptible, infected, recovered, and cumulative deceased population fractions. Transmission, recovery, and disease death rates are positive trainable parameters.
+
+The original network uses an unconstrained linear output. The later networks mix the known initial state with a softmax output through the gate `g(t) = 1 - exp(-t/3.2)`. This gives nonnegative states, the exact initial state, and a total population fraction of one for nonnegative time. Differential equations are enforced through a weighted residual loss and remain approximate.
+
+In the two-region model, all eight states use the **combined initial population** as their unit. Incidence in region `j` is `beta_j * S_j * I_j / p_j`, with fixed reference fractions `p1 = 0.6` and `p2 = 0.4`. Regional totals can change through movement. `tau12` moves people from region 1 to region 2; `tau21` moves people from region 2 to region 1. Each directional rate applies to S, I, and R. Deceased states do not move.
+
+All states and the initial conditions are observed or known in the final benchmarks. Each noisy or missing case has one fixed dataset shared by seeds 0, 1, and 2. Gaussian noise is added without clipping or renormalizing observations. Seed variation reflects network initialization, not statistical uncertainty.
+
+## Results
+
+The original SIRD reproduction recovered the three rates below 0.1% absolute relative error:
+
+| Rate | Truth per day | Recovered per day | Error % |
+| --- | ---: | ---: | ---: |
+| beta | 0.50000000 | 0.50016302 | 0.032604 |
+| gamma | 0.20000000 | 0.20001969 | 0.009844 |
+| omega | 0.07142857 | 0.07149749 | 0.096479 |
+
+The original output also has 46 negative entries on the 641-point diagnostic grid and a maximum population sum error of 0.00158. These limits motivated the separate constrained implementation.
+
+The two-region results below include all three seeds for each case:
+
+| Case | Worst disease rate error % | Worst movement rate error % | DINN trajectory RMSE range | ODE trajectory RMSE |
+| --- | ---: | ---: | ---: | ---: |
+| Clean | 0.265 | 0.438 | 0.000237 to 0.000261 | 3.43e-15 |
+| Noisy | 2.15 | 1.03 | 0.000359 to 0.000368 | 0.000105 |
+| Missing | 0.340 | 0.649 | 0.000246 to 0.000268 | 2.81e-15 |
+
+Absolute relative rate error is `100 * abs(estimate - truth) / truth`. Trajectory RMSE averages squared errors over all states and 641 times on days 0-160, then takes the square root. Rate-error columns show maxima across the applicable rates and all three seeds. The ODE comparator has one calibration per dataset.
+
+![Clean two-region state trajectories and largest state errors across three initialization seeds](figures/presentation/2026-10-11/F03_two_region_trajectories.png)
+
+Solid state curves are neural fits; dashed curves are synthetic ODE truth. The lower panels show the largest absolute state error in each region. See the [figure captions and source files](results/presentation/2026-10-11/captions.md).
+
+Across all 21 constrained neural fits, diagnostic states are nonnegative, initial-state error is zero, and the largest population sum error is 4.44e-16. Equation residuals remain nonzero. Some single-region recovered/deceased curves and two-region deceased curves have small negative derivatives. Regional recovered states can decrease through outward movement. State constraints alone do not enforce monotonicity.
+
+The single-region forecast test uses observations and equation points only through day 60, then integrates the SIRD equations with the inferred rates for days 61-88. All-state forecast RMSE ranges from 0.000416 to 0.00118 across the three seeds, compared with 0.157 for day-60 persistence and 2.51e-12 for direct ODE calibration. This is one clean synthetic cutoff; the two-region study has no forecast benchmark.
+
+The [exact result tables](results/presentation/2026-10-11/) retain unrounded estimates, every seed, comparators, and constraint diagnostics. The [project report](docs/report/project_report.md) explains the results and their interpretation.
+
+## Reproduce an experiment
+
+Use the model-specific instructions to prepare observations, fit ODE baselines, train every seed, and summarize a fresh run:
+
+- [Original SIRD reproduction](docs/reproduction/original.md)
+- [Constrained SIRD experiments](docs/reproduction/sird.md)
+- [Two-region mobility experiments](docs/reproduction/two_region.md)
+
+New experiment outputs belong in `runs/` and are excluded from version control. Recorded experiment directories are protected from overwrite by the runners. Training budgets, seeds, observation designs, and source hashes are recorded in each protocol. The original uses float32; later models use float64. Dependency pins and fixed seeds support reproduction but do not guarantee identical floating-point results on every platform.
+
+To regenerate the presentation figures and tables from saved records, without training, choose a fresh output directory:
+
+```bash
+python scripts/build_presentation_assets.py --output runs/presentation_review
 ```
 
-a neural network can be used to approximate the unknown solution:
+## Repository guide
 
-```text
-NN(t) ≈ u(t).
-```
+| Location | Contents |
+| --- | --- |
+| [src/](src/) | Single-region and two-region equations, neural models, and output-path protection |
+| [notebooks/](notebooks/) | Original notebook and two-region walkthrough |
+| [scripts/](scripts/) and [tests/](tests/) | Reproduction runners, verification, figure builder, and mathematical checks |
+| [data/synthetic/](data/synthetic/) | Exact observations used by the recorded experiments |
+| [results/](results/) | Protocols, checkpoints, trajectories, baselines, and result tables |
+| [figures/](figures/) | Original recorded plots and presentation derivatives |
+| [docs/](docs/) | Project report, reproduction instructions, and provenance records |
+| [archive/](archive/) | Earlier source versions, executed reproduction notebooks, and development records |
 
-Because neural networks are differentiable, automatic differentiation can compute
+The [structure notes](docs/project_structure.md) describe the dated folders in detail.
 
-```text
-dNN(t)/dt.
-```
+## Limits and further research
 
-The PINN then penalizes the difference between the neural-network derivative and the right-hand side of the differential equation:
+The experiments use correctly specified synthetic equations, fully observed states, and known initial conditions. They do not test real surveillance, empirical mobility, uncertainty intervals, or operational forecasting. Direct ODE calibration has lower overall trajectory RMSE in every full-window benchmark and lower holdout RMSE in the forecast test.
 
-```text
-physics residual = neural network derivative - differential equation right-hand side
-```
+Identifiability requires separate attention. Observing only S and I cannot separate gamma from omega in the single-region model. Equal, symmetric regions can leave the common movement scale unidentified. Full local numerical Jacobian rank for the chosen two-region data is not a proof of global identifiability.
 
-So the network is trained to satisfy both:
+Further work will examine partial observations, repeated noise realizations, uncertain initial states, and time-varying rates against the same ODE baseline. Extension to SIS patch models and empirical data remains future work.
 
-1. the observed data,
-2. the governing equation.
+## Version history and attribution
 
-A typical PINN loss has the form:
+The original source is pinned at commit [`3c6275393c7f2aea437683c0e077996e6bff5d45`](https://github.com/kingsleyukandu/dinn-epidemic-mobility/tree/3c6275393c7f2aea437683c0e077996e6bff5d45). Its notebook remains byte-identical to Git blob `2585e90aba6c964101b55e642a62279ea3318ece`. The [earlier README](archive/2026-10-11/source/README.md) is retained with the historical source. [Provenance records](docs/provenance/) connect archived files, current paths, and SHA-256 hashes.
 
-```text
-total loss = data loss + physics loss + initial/boundary condition loss
-```
+Shaier, S., Raissi, M., and Seshaiyer, P. (2022). *Data-driven approaches for predicting spread of infectious diseases through DINNs: Disease Informed Neural Networks.* Letters in Biomathematics, 8(1), 71-105. [arXiv version](https://arxiv.org/abs/2110.05445v3).
 
-where:
-
-* **data loss** measures how well the network matches observed data,
-* **physics loss** measures how well the network satisfies the differential equation,
-* **initial/boundary condition loss** anchors the solution to known starting or boundary values.
-
-This makes PINNs useful for scientific machine learning because they combine data-driven learning with mathematical modeling.
-
----
-
-## What is a DINN?
-
-A **Disease-Informed Neural Network**, or **DINN**, is a PINN specialized for disease dynamics and compartmental epidemic models.
-
-In epidemic modeling, the governing equations usually describe how people move between disease compartments such as:
-
-```text
-S(t): susceptible population
-I(t): infected population
-R(t): recovered population
-D(t): deceased population
-```
-
-For a basic SIRD model, a DINN may take time as input and return the epidemic compartments as output:
-
-```text
-NN(t) ≈ (S(t), I(t), R(t), D(t)).
-```
-
-The DINN is trained to do two things at once:
-
-1. learn the epidemic trajectory,
-2. discover the hidden disease parameters that make the trajectory satisfy the epidemic model.
-
-For example, parameters such as:
-
-* transmission rate,
-* recovery rate,
-* mortality rate,
-* movement rate,
-* patch-specific transmission rates,
-* patch-specific recovery rates,
-
-can be treated as trainable variables.
-
-This means a DINN is not just fitting epidemic curves. It is also learning the parameters inside the governing disease equations.
-
----
-
-## Why Neural Networks Matter for Disease Dynamics
-
-Neural networks are important in epidemic modeling because real disease data is often incomplete, noisy, sparse, delayed, or affected by changing interventions.
-
-Traditional parameter estimation usually follows this workflow:
-
-```text
-choose parameters → solve ODE → compare with data → adjust parameters → solve again
-```
-
-This can become expensive and difficult when the model has many compartments, many parameters, or complicated movement between populations.
-
-A DINN changes the workflow:
-
-```text
-data + governing equations → learn trajectory + learn parameters
-```
-
-This is useful because:
-
-* epidemic data may only be available at discrete time points,
-* the ODE residual helps prevent the network from becoming a black-box curve fitter,
-* automatic differentiation allows the model to enforce differential equations directly,
-* neural networks provide smooth approximations of epidemic curves,
-* parameter discovery and trajectory fitting are combined in one optimization problem,
-* the same framework can be adapted from simple models to more complex spatial or multipatch models.
-
-In this project, neural networks are used as computational tools for learning, estimating, and exploring epidemic dynamics. They do not replace mathematical analysis; instead, they complement it.
-
----
-
-## Mathematical Models Used in This Project
-
-### 1. Basic SIRD Model
-
-The first stage of the project uses the classical SIRD model.
-
-The compartments are:
-
-* `S`: susceptible individuals,
-* `I`: infectious individuals,
-* `R`: recovered individuals,
-* `D`: dead/deceased individuals.
-
-The model is
-
-```math
-\frac{dS}{dt} = -\frac{\beta}{N}SI,
-```
-
-```math
-\frac{dI}{dt} = \frac{\beta}{N}SI - \gamma I - \omega I,
-```
-
-```math
-\frac{dR}{dt} = \gamma I,
-```
-
-```math
-\frac{dD}{dt} = \omega I.
-```
-
-Here:
-
-* `N` is the total population,
-* `beta` is the transmission rate,
-* `gamma` is the recovery rate,
-* `omega` is the mortality rate.
-
-The project may also work with fractions of the population:
-
-```text
-s = S/N, i = I/N, r = R/N, d = D/N.
-```
-
-Using fractions keeps the numerical values close to order 1, which often makes neural-network training more stable.
-
-In this stage, the neural network learns:
-
-```text
-NN(t) ≈ (S(t), I(t), R(t), D(t))
-```
-
-or, in fraction form,
-
-```text
-NN(t) ≈ (s(t), i(t), r(t), d(t)).
-```
-
-The trainable disease parameters are:
-
-* `beta`: transmission rate,
-* `gamma`: recovery rate,
-* `omega`: mortality rate.
-
-The main goal of this stage is to recover known parameters from synthetic data and verify that the DINN works.
-
----
-
-### 2. SIRD Model with Population Movement
-
-The second stage extends the SIRD model by introducing two interacting regions.
-
-Instead of one population, there are now two populations:
-
-Region 1:
-
-```text
-S1, I1, R1, D1
-```
-
-Region 2:
-
-```text
-S2, I2, R2, D2
-```
-
-The neural network output dimension increases from 4 to 8:
-
-```text
-NN(t) ≈ (S1, I1, R1, D1, S2, I2, R2, D2).
-```
-
-Movement terms are added to represent transportation between regions.
-
-For example:
-
-* `tau_12`: movement rate from region 1 to region 2,
-* `tau_21`: movement rate from region 2 to region 1.
-
-This stage teaches how DINNs scale when the epidemic model includes:
-
-* multiple populations,
-* spatial structure,
-* transportation,
-* additional unknown parameters,
-* region-specific disease dynamics.
-
-The goal is to determine whether the DINN can recover both disease parameters and movement parameters from synthetic data.
-
----
-
-### 3. Multipatch SIS Model with Mass-Action Infection
-
-The final stage transfers the DINN idea to a multipatch SIS epidemic model with mass-action infection.
-
-In an SIS model, individuals move between two disease states:
-
-```text
-S → I → S.
-```
-
-That means infected individuals can recover and return to the susceptible class.
-
-For patch `i`, the compartments are:
-
-```text
-S_i(t): susceptible population in patch i
-I_i(t): infected population in patch i
-```
-
-The general structure of the equations is:
-
-```text
-dS_i/dt = susceptible movement - infection + recovery
-```
-
-```text
-dI_i/dt = infected movement + infection - recovery
-```
-
-For a system with `n` patches, the neural network output size becomes:
-
-```text
-2n
-```
-
-because each patch has one susceptible and one infected compartment.
-
-The neural network approximates:
-
-```text
-NN(t) ≈ (S_1(t), ..., S_n(t), I_1(t), ..., I_n(t)).
-```
-
-This stage is connected to the study of endemic equilibria. The goal is not only to fit epidemic trajectories, but also to explore how equilibrium disease levels change as key parameters vary.
-
-Important parameters include:
-
-* susceptible dispersal rate `dS`,
-* infected dispersal rate `dI`,
-* total population size `N`,
-* reproduction number `R0`,
-* patch-level transmission rates,
-* patch-level recovery rates,
-* connectivity matrix between patches.
-
-This stage connects the computational DINN framework with deeper mathematical questions about multiple endemic equilibria, loops, bounded and unbounded branches, and S-shaped bifurcation curves.
-
----
-
-## Project Execution Plan
-
-## Phase 1: Build the Basic SIRD-DINN
-
-The first phase establishes the baseline DINN workflow.
-
-### Steps
-
-1. Generate synthetic SIRD data using known true parameters.
-2. Build a PyTorch neural network with input `t` and output `(S, I, R, D)`.
-3. Normalize time and state variables.
-4. Define trainable parameters for `beta`, `gamma`, and `omega`.
-5. Build the three-part loss:
-
-   * data loss,
-   * ODE residual loss,
-   * initial condition loss.
-6. Train the model using Adam.
-7. Compare recovered parameters with the true parameters.
-8. Plot true vs predicted epidemic trajectories.
-
-### Expected Outputs
-
-* training loss curve,
-* SIRD trajectory plot,
-* table of true, initial guess, and recovered parameters.
-
----
-
-## Phase 2: Extend to SIRD with Transportation
-
-The second phase introduces population movement between two regions.
-
-### Steps
-
-1. Extend the state vector from 4 to 8 compartments.
-2. Modify the neural-network output layer.
-3. Rewrite the ODE residuals to include transportation terms.
-4. Add trainable movement parameters such as `tau_12` and `tau_21`.
-5. Train on synthetic two-region epidemic data.
-6. Evaluate whether the DINN can recover both disease parameters and movement parameters.
-7. Add optional experiments with noisy and missing observations.
-
-### Expected Outputs
-
-* two-region trajectory plots,
-* recovered disease and movement parameter table,
-* robustness experiments with noisy data,
-* comparison of true and learned transportation parameters.
-
----
-
-## Phase 3: Transfer to the SIS Patch Model
-
-The third phase adapts the DINN framework to the multipatch SIS model.
-
-### Steps
-
-1. Define the multipatch SIS model with mass-action infection.
-2. Set the neural-network output size to `2n`, where `n` is the number of patches.
-3. Include the connectivity matrix for movement between patches.
-4. Implement the SIS ODE residuals.
-5. Decide which parameters are known and which are trainable.
-6. Train the DINN on synthetic SIS patch data.
-7. Explore steady-state or equilibrium behavior.
-8. Use a steady-state PINN idea where time derivatives are set to zero to approximate endemic equilibria.
-9. Vary parameters such as `dS`, `R0`, or `N`.
-10. Visualize the equilibrium structure.
-11. Compare computational results with known theoretical behavior.
-
-### Expected Outputs
-
-* SIS patch trajectory plots,
-* endemic equilibrium plots,
-* bifurcation-style diagrams,
-* comparison between numerical DINN/PINN results and mathematical theory.
-
----
-
-## Evaluation and Validation
-
-The project will be evaluated using both machine-learning and mathematical-modeling criteria.
-
-### 1. Trajectory Fit
-
-Compare the DINN-predicted epidemic curves against the synthetic ground-truth ODE solution.
-
-This includes plots of:
-
-* susceptible population,
-* infected population,
-* recovered population,
-* deceased population.
-
-### 2. Parameter Recovery Error
-
-Compare the learned parameters with the true parameters used to generate synthetic data.
-
-For each parameter, compute:
-
-```text
-absolute error = |learned value - true value|
-```
-
-and
-
-```text
-relative error = |learned value - true value| / |true value|.
-```
-
-### 3. Robustness to Noisy Data
-
-Add noise to the synthetic observations and test whether the DINN can still recover meaningful trajectories and parameters.
-
-### 4. Robustness to Missing Observations
-
-Remove some observations and test whether the ODE residual helps the network learn reasonable dynamics from sparse data.
-
-### 5. Comparison with Numerical ODE Solutions
-
-Compare DINN predictions against classical numerical ODE solvers such as `odeint` or `solve_ivp`.
-
-### 6. Comparison with SIS Patch Theory
-
-For the multipatch SIS model, compare the learned or computed equilibrium structures with known theoretical behavior, such as:
-
-* multiple endemic equilibria,
-* loops in equilibrium branches,
-* bounded and unbounded branches,
-* S-shaped bifurcation diagrams,
-* changes in disease persistence as movement rates vary.
-
----
-
-## Why This Project Matters
-
-This project sits at the intersection of:
-
-* scientific machine learning,
-* mathematical epidemiology,
-* inverse problems,
-* neural differential equations,
-* disease modeling,
-* population mobility,
-* computational applied mathematics.
-
-The project is important because it builds a bridge between rigorous mathematical epidemic models and modern data-driven machine-learning methods.
-
-On the mathematical side, epidemic models provide structure, interpretability, and theoretical insight. On the machine-learning side, neural networks provide flexible approximation, automatic differentiation, and data-driven parameter discovery.
-
-By combining both, DINNs offer a way to study disease dynamics without treating the neural network as a black box. The model is still guided by the epidemic equations.
-
----
-
-## Limitations
-
-This project has several important limitations.
-
-First, synthetic data is easier to work with than real epidemic data. Synthetic data is clean, controlled, and generated from the same equations used in training.
-
-Second, parameter identifiability can be difficult. Different parameter combinations may produce similar epidemic trajectories.
-
-Third, PINN and DINN training can be sensitive to loss weights. If the data loss, physics loss, and initial condition loss are not balanced properly, the model may fail to converge.
-
-Fourth, neural networks may converge to poor local minima or produce inaccurate parameter estimates.
-
-Fifth, real-world disease data often includes reporting delays, undercounting, missing values, changes in testing policy, behavioral changes, and interventions.
-
-Finally, DINNs should complement mathematical analysis, not replace it. For complex epidemic models, theoretical results remain essential for understanding long-term behavior.
-
----
-
-## Future Work
-
-Possible future extensions include:
-
-* applying the framework to real epidemic data,
-* extending the transportation model to more than two regions,
-* allowing parameters to vary with time,
-* adding uncertainty quantification,
-* building Bayesian or ensemble DINNs,
-* comparing DINNs with classical least-squares parameter estimation,
-* applying the framework to SEIR, SIRS, or vector-borne disease models,
-* studying how well steady-state PINNs can recover endemic equilibrium branches,
-* testing whether DINNs can detect early signs of backward bifurcation or multiple equilibria.
-
----
-
-## References
-
-This project is motivated by work on:
-0. ICM Satelite conference at MSU
-1. Physics-Informed Neural Networks for solving and discovering differential equations.
-2. Disease-Informed Neural Networks for compartmental epidemic models.
-3. PINN/DINN methods for infectious disease dynamics with travel and transportation.
-4. Multipatch SIS epidemic models with mass-action infection and complex endemic equilibrium structure.
-
-Specific references will be added as the project develops.
-
----
-
-## Author
-
-**Kingsley C. Ukandu**
-Applied Mathematics | Scientific Machine Learning | Mathematical Epidemiology | Health Data Analytics
-
----
-
-## Project Vision
-
-The long-term vision of this project is to develop a transferable workflow for customizing DINNs across epidemic models.
-
-The project begins with a simple SIRD model, grows into a movement-aware epidemic model, and eventually connects to a research-level SIS patch model with complex equilibrium behavior.
-
-The central learning objective is:
-
-```text
-Become comfortable taking a disease model, identifying its compartments and equations, building the correct neural-network output structure, writing the ODE residuals, and training the DINN to recover trajectories and parameters.
-```
-
-This project is both a coding project and a mathematical modeling project.
+This project applies that framework to the implementations and synthetic benchmarks documented here.

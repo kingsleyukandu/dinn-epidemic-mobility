@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-10-11T21:34:58.747916+00:00",
+  "operation": "Step 4.6 source packaging; no experiment edits or publication",
+  "generated_files": [
+    {
+      "path": "docs/provenance/verification_sources_verification.json",
+      "sha256": "af8eb7b37b0768c0541bcd2a798cd33a2e99eef7492846b2287a25af88f90a24"
+    },
+    {
+      "path": "docs/report/DINN_Project_Report.pdf",
+      "sha256": "7c14f4449ecb6193687de1b19c600f5a78f83f9b67f8a9e21f0246cbc0b3529a"
+    },
+    {
+      "path": "docs/verification/2026-10-11/code_extracts.json",
+      "sha256": "52c259f0a7d340bfddb5be4652d5f79511d07d7a47867c22366df3f1efd45a5e"
+    },
+    {
+      "path": "docs/verification/2026-10-11/code_extracts.md",
+      "sha256": "7fed200d932e246a99d47c686cef40fcd460e5ca708436af0ad741deb8d751a3"
+    },
+    {
+      "path": "docs/verification/2026-10-11/readme_extracts.json",
+      "sha256": "38ae0dc93ecdb5490422c4893c4dce8105f0d4ae29b0b1c6fdb3054ffe155d4a"
+    },
+    {
+      "path": "docs/verification/2026-10-11/recorded_output_extracts.json",
+      "sha256": "c75f5439dd8b846093a4f8a1316def380a579ffdc70531728804da8555217d1d"
+    },
+    {
+      "path": "docs/verification/2026-10-11/source_index.csv",
+      "sha256": "03627c9cac541b057944890d0a3287c0045905f4122a49d665b8027d7be26798"
+    },
+    {
+      "path": "docs/verification/2026-10-11/source_index.json",
+      "sha256": "e02bfea625a2e4adbc0eddeb2ed051957ba198ec9bdd00c125a85b290e27d774"
+    },
+    {
+      "path": "docs/verification/2026-10-11/verification_index.md",
+      "sha256": "2ceb94acf0b1a270278ad4c374e960b6a5a29667a6b0d3f4464f6912975fbea8"
+    },
+    {
+      "path": "scripts/build_verification_sources.py",
+      "sha256": "e45417987120e54ec12437e257a3b993c42e4b18f79628593fc0301bb5788969"
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "created_utc": "2026-10-11T21:17:08.069869+00:00",
+  "report_date": "2026-10-11",
+  "public_base_commit": "3c6275393c7f2aea437683c0e077996e6bff5d45",
+  "operation": "Research report from preserved experiments; no training or publication",
+  "inputs": [
+    {
+      "path": "docs/provenance/presentation_verification.json",
+      "sha256": "8acff3f0e6c802bbf04348d1c3d07372bb7eba805e39cfcc99a9a86898956791"
+    },
+    {
+      "path": "figures/presentation/2026-10-11/F03_two_region_trajectories.png",
+      "sha256": "fae094112b3bb86e07162361db4fb38f33b3c60c2e416e96ff5de4ab8338104d"
+    },
+    {
+      "path": "figures/presentation/2026-10-11/F06_chronological_forecast.png",
+      "sha256": "a9eafaf40ac542bcc55a124be7580b154e1ecbea7f4a78f3aaaa1075b068b3dd"
+    },
+    {
+      "path": "results/original/2026-10-11/run_1/metrics.json",
+      "sha256": "982e348b01ba78a4ef49dd72de81a788fc38472390ef7e5f3def9f37981c366c"
+    },
+    {
+      "path": "results/original/2026-10-11/run_1/repeatability.json",
+      "sha256": "692ff635851766e15c1964073cdd6d010b111b23d931339857abe3539fe131b4"
+    },
+    {
+      "path": "results/presentation/2026-10-11/T01_original_parameters.csv",
+      "sha256": "e68ed3347397e26dcf67c8fc822d00aa21882258340d3d81599c02f632cad125"
+    },
+    {
+      "path": "results/presentation/2026-10-11/T03_benchmark_summary.csv",
+      "sha256": "5cfb4c32f40bd12247b63a18570a74b2bb2150e2ce59f19971285c5d835b2f1c"
+    },
+    {
+      "path": "results/presentation/2026-10-11/T04_constraint_diagnostics_all_fits.csv",
+      "sha256": "ac2bed14f9b01a00d37353ca77a7d7c08f01114f1aa1969364b1987edad89fed"
+    },
+    {
+      "path": "results/presentation/2026-10-11/T06_forecast_comparison.csv",
+      "sha256": "c922f9913aa9aaebedd966c231dff8a0c6324197bfaf1da9816ff57002c41291"
+    },
+    {
+      "path": "results/sird/2026-10-11/partial_observability.json",
+      "sha256": "2aa5591591a941772a5c47906cd519d650fca00e35a936f44664b8a0386bf8d1"
+    },
+    {
+      "path": "results/sird/2026-10-11/protocol.json",
+      "sha256": "f7008604d7fd3e511fc65cd15b9b3667bf0a89c7ca734b365efc83daceef2291"
+    },
+    {
+      "path": "results/sird/2026-10-11/verification.json",
+      "sha256": "2d06f9a389f8c6c87951b80d950da3ab2ecd8ce1c42366be1133d67912ab4098"
+    },
+    {
+      "path": "results/two_region/2026-10-11/clean/ode_baseline.json",
+      "sha256": "ae6d8c0cf63e7047fde507b5b51db588ba62947a73063368e5e89fc6255f6e4a"
+    },
+    {
+      "path": "results/two_region/2026-10-11/clean/seed_0/metrics.json",
+      "sha256": "30b66697c7cb91f00a2b36e01b1bc6f4f887c2cbffc04d3e4ec25fd3eb1c37e0"
+    },
+    {
+      "path": "results/two_region/2026-10-11/clean/seed_1/metrics.json",
+      "sha256": "624b62f3a333b3f47b2f971cb3f61bbce77129a92b2fa8075e91136e6dcf4a32"
+    },
+    {
+      "path": "results/two_region/2026-10-11/clean/seed_2/metrics.json",
+      "sha256": "51710beadbc066439e5dd490915acf6ea7ae1770d17ac3c11c278eb3a7ddc2db"
+    },
+    {
+      "path": "results/two_region/2026-10-11/missing/ode_baseline.json",
+      "sha256": "295ef9d574d686993df88da43f376d26d360175c3ee4927ed7d80a3048fa3618"
+    },
+    {
+      "path": "results/two_region/2026-10-11/missing/seed_0/metrics.json",
+      "sha256": "73c95e987131f4371b87fac479f0fc7a7a41ae4520c9cc9394a384dcbe1fa3ce"
+    },
+    {
+      "path": "results/two_region/2026-10-11/missing/seed_1/metrics.json",
+      "sha256": "1cf0d7a49c5e88b9fc6f6aaed6e81440c8f2d469c803569f51c0f3a179e64c68"
+    },
+    {
+      "path": "results/two_region/2026-10-11/missing/seed_2/metrics.json",
+      "sha256": "a0a2a84655116cf5aed861d4a9a08c07dfbd256220f7fef520df738d739f26a4"
+    },
+    {
+      "path": "results/two_region/2026-10-11/model_checks.json",
+      "sha256": "a50e24d40b6cb404706b0e12fa7eb51055ffceda3b9322a572bca6f41cd048a2"
+    },
+    {
+      "path": "results/two_region/2026-10-11/noisy/ode_baseline.json",
+      "sha256": "75161fe0751df14b2a8a4c2822f1947a617dd97697710ac76a7aa69db10546fd"
+    },
+    {
+      "path": "results/two_region/2026-10-11/noisy/seed_0/metrics.json",
+      "sha256": "8943b9948b778c8a45b487df6c77e809b0b94adb0ab1ebb25513fbdc785df506"
+    },
+    {
+      "path": "results/two_region/2026-10-11/noisy/seed_1/metrics.json",
+      "sha256": "652fa463adb9cb065187e66bdc9303892e9cc9842d11e09df978a874cae25e0c"
+    },
+    {
+      "path": "results/two_region/2026-10-11/noisy/seed_2/metrics.json",
+      "sha256": "c35ccc06f35dc5ec34a30a673be53fd611b1c565e47b3b7e52cedf8ec828531a"
+    },
+    {
+      "path": "results/two_region/2026-10-11/protocol.json",
+      "sha256": "b65560762505bbffa0d56fdfe0237059f5e7425f8ac8d32ac9d39bc8e1323321"
+    }
+  ],
+  "markdown_source_sha256": "926939f8b19562117ca267bc0209b6071165ff036b3541ba454f35b79f77165f",
+  "builder_sha256": "1343ab28a79868284ea3105b31ea5b923b78ad2c1a8136d41fedfcd46a8013d5",
+  "external_reference": {
+    "url": "https://arxiv.org/abs/2110.05445v3",
+    "access_date": "2026-10-11"
+  }
+}

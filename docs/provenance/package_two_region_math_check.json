@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "numerical_trajectory_tolerance_population_fraction": 1e-08,
+  "results": {
+    "population_balance": {
+      "global_rhs_sum_max_abs": 4.163336342344337e-17,
+      "regional_rhs_balance_max_abs": 3.2959746043559335e-17
+    },
+    "boundary_nonnegativity": {
+      "tested_boundary_states": 1600,
+      "minimum_derivative": 2.1122014794364e-06
+    },
+    "mobility_convention": {
+      "matrix": [
+        [
+          -0.015,
+          0.01
+        ],
+        [
+          0.015,
+          -0.01
+        ]
+      ],
+      "deceased_compartments_have_no_movement_terms": true
+    },
+    "zero_mobility": {
+      "max_abs_rhs_difference_from_original_SIRD": 2.7755575615628914e-17,
+      "max_abs_trajectory_difference_from_independent_original_SIRD": 3.1708800585228403e-09
+    },
+    "transport_only": {
+      "max_abs_difference_from_matrix_exponential": 4.203043468820056e-11,
+      "deceased_counts_constant": true
+    },
+    "symmetric_limit": {
+      "max_abs_aggregate_difference_from_single_SIRD": 1.59701218915842e-09,
+      "max_abs_difference_with_sixfold_common_movement_rate": 0.0,
+      "interpretation": "Equal region sizes and identical epidemic states with symmetric flows leave the common movement scale unidentifiable."
+    },
+    "infection_transport": {
+      "region2_initial_infected": 0.0,
+      "region2_infected_day1_with_movement": 1.8233919726610795e-07,
+      "region2_infected_day5_without_movement": 0.0
+    },
+    "independent_solver": {
+      "max_abs_DOP853_Radau_difference": 7.267162260848892e-09,
+      "reference_global_balance_max_abs": 3.3306690738754696e-16,
+      "reference_region1_population_range": [
+        0.39985050924953075,
+        0.6
+      ]
+    },
+    "neural_implementation": {
+      "numpy_torch_rhs_max_abs_difference": 0.0,
+      "derivative_scaling_max_abs_difference": 5.487006248666715e-13,
+      "three_initializations_pass_simplex_and_exact_IC_checks": true
+    }
+  }
+}

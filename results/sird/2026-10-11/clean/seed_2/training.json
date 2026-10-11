@@ -1,0 +1,26 @@
+{
+  "config": {
+    "horizon": 160.0,
+    "width": 32,
+    "depth": 3,
+    "gate_scale_days": 3.2,
+    "adam_steps": 8000,
+    "lbfgs_steps": 600,
+    "learning_rate": 0.001,
+    "physics_weight": 0.0001,
+    "collocation_points": 161,
+    "dtype": "float64"
+  },
+  "seed": 2,
+  "initial_rates": [
+    0.8,
+    0.1,
+    0.15
+  ],
+  "runtime_seconds": 30.51387643099997,
+  "lbfgs_closure_evaluations": 794,
+  "final_total_loss": 3.9292384788139525e-07,
+  "final_data_mse": 3.577385293118212e-07,
+  "final_equation_mse_tau": 0.0003518531856957405,
+  "observed_scalar_values": 216
+}

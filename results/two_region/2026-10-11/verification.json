@@ -1,0 +1,89 @@
+{
+  "status": "PASS",
+  "checkpoint_checks": [
+    {
+      "case": "clean",
+      "seed": 0,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "clean",
+      "seed": 1,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "clean",
+      "seed": 2,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "noisy",
+      "seed": 0,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "noisy",
+      "seed": 1,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "noisy",
+      "seed": 2,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "missing",
+      "seed": 0,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "missing",
+      "seed": 1,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    },
+    {
+      "case": "missing",
+      "seed": 2,
+      "all_recorded_metrics_reproduced": true,
+      "observation_MSE_reproduced": true,
+      "state_constraints_passed": true
+    }
+  ],
+  "baseline_checks": [
+    {
+      "case": "clean",
+      "objective_reproduced": true,
+      "log_rate_jacobian_numerical_rank": 8
+    },
+    {
+      "case": "noisy",
+      "objective_reproduced": true,
+      "log_rate_jacobian_numerical_rank": 8
+    },
+    {
+      "case": "missing",
+      "objective_reproduced": true,
+      "log_rate_jacobian_numerical_rank": 8
+    }
+  ],
+  "source_and_data_hashes_verified": true,
+  "original_notebook_preserved": true,
+  "pilot_vs_fresh_clean_seed0_metrics_identical": true,
+  "summary_script_sha256": "708908ff69917593a35ce6a058f85ca604111c2d2cba957253df196f51ccfc1a"
+}

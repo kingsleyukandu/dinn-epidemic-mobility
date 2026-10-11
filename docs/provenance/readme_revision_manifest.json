@@ -1,0 +1,22 @@
+{
+  "created_utc": "2026-10-11T21:25:52.463100+00:00",
+  "operation": "Step 4.5 README and associated navigation revision",
+  "changes": [
+    {
+      "path": "README.md",
+      "step4_2_sha256": "4b68605bfb3b0ca816020b74e29870f080058a552417f28d863b4566a0619e04",
+      "current_sha256": "7e11f8975e348f4923628ed578040bc3fd3773ebfdede03161c05840a48441be"
+    },
+    {
+      "path": "docs/project_structure.md",
+      "step4_2_sha256": "cceab47d2570c6a4285aaa6bdd25f09cd4e777cd921e06f1abb128b1328072a8",
+      "current_sha256": "745e5a4545fe88708d03006bcb3393995812febdca24df73fd872b1cc277a3bc"
+    },
+    {
+      "path": "docs/provenance/path_map.json",
+      "step4_2_sha256": "f048b8a6190e23229d927fa303d21e87176092ea63d6701628a94764693bb188",
+      "current_sha256": "687fa1547a29770ac048f5800899ce5c8d6b6e44cecb8c90876de18752ed4102"
+    }
+  ],
+  "verification_sha256": "90199306c658f6b16e2867aa3cf5f1d99c3a88000ba7f9a1cd85160b615b939a"
+}

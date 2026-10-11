@@ -1,0 +1,25 @@
+{
+  "status": "PASS",
+  "verified_utc": "2026-10-11T21:25:52.462797+00:00",
+  "readme_sha256": "7e11f8975e348f4923628ed578040bc3fd3773ebfdede03161c05840a48441be",
+  "local_links_checked": 23,
+  "historical_records_preserved": true,
+  "model_code_modified": false,
+  "training_rerun": false,
+  "publication_performed": false,
+  "numerical_tables_match_recorded_csv": true,
+  "report_sources_unchanged": true,
+  "checkpoint_diagnostics_reproduced": 21,
+  "ode_objectives_reproduced": 7,
+  "single_and_two_region_model_checks": "PASS",
+  "documentation_paths_updated": [
+    "README.md",
+    "docs/project_structure.md",
+    "docs/provenance/path_map.json"
+  ],
+  "before_revision_archives": [
+    "archive/2026-10-11/source/README.md",
+    "archive/2026-10-11/organization/path_map_step4_2.json",
+    "archive/2026-10-11/organization/project_structure_step4_2.md"
+  ]
+}

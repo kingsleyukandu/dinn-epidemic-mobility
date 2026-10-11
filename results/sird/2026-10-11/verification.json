@@ -1,0 +1,109 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Checkpoint diagnostics reproduced",
+    "Structural state constraints on diagnostic grids",
+    "Dataset and source hashes",
+    "Chronological holdout excludes later observations",
+    "Missing-data endpoints and count",
+    "ODE objectives independently recomputed"
+  ],
+  "monotonicity_diagnostics": [
+    {
+      "case": "clean",
+      "seed": 0,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -7.818575493825323e-06,
+      "minimum_deceased_derivative_per_day": 3.6052540516833602e-06,
+      "negative_RD_derivative_entries": 126
+    },
+    {
+      "case": "clean",
+      "seed": 1,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": 5.527108340656721e-07,
+      "minimum_deceased_derivative_per_day": 4.453168780413141e-06,
+      "negative_RD_derivative_entries": 0
+    },
+    {
+      "case": "clean",
+      "seed": 2,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -8.383649241672662e-06,
+      "minimum_deceased_derivative_per_day": 1.907836646989773e-06,
+      "negative_RD_derivative_entries": 136
+    },
+    {
+      "case": "noisy",
+      "seed": 0,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -2.9348935109469598e-05,
+      "minimum_deceased_derivative_per_day": 5.674955553278786e-06,
+      "negative_RD_derivative_entries": 164
+    },
+    {
+      "case": "noisy",
+      "seed": 1,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -1.1788320073313072e-05,
+      "minimum_deceased_derivative_per_day": -3.947955243839861e-06,
+      "negative_RD_derivative_entries": 186
+    },
+    {
+      "case": "noisy",
+      "seed": 2,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -3.0015110935381693e-05,
+      "minimum_deceased_derivative_per_day": 5.23811787478775e-06,
+      "negative_RD_derivative_entries": 161
+    },
+    {
+      "case": "missing",
+      "seed": 0,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -8.662596872393408e-06,
+      "minimum_deceased_derivative_per_day": -1.4946837984008737e-06,
+      "negative_RD_derivative_entries": 186
+    },
+    {
+      "case": "missing",
+      "seed": 1,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -1.4028763678677176e-06,
+      "minimum_deceased_derivative_per_day": 3.931751373790887e-06,
+      "negative_RD_derivative_entries": 56
+    },
+    {
+      "case": "missing",
+      "seed": 2,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": -1.2864362857435902e-05,
+      "minimum_deceased_derivative_per_day": 4.088651611585841e-06,
+      "negative_RD_derivative_entries": 139
+    },
+    {
+      "case": "forecast",
+      "seed": 0,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": 6.037114640385489e-06,
+      "minimum_deceased_derivative_per_day": 2.5669417439700724e-06,
+      "negative_RD_derivative_entries": 0
+    },
+    {
+      "case": "forecast",
+      "seed": 1,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": 9.996742909499252e-06,
+      "minimum_deceased_derivative_per_day": 3.362169882791539e-06,
+      "negative_RD_derivative_entries": 0
+    },
+    {
+      "case": "forecast",
+      "seed": 2,
+      "checkpoint_matches_metrics": true,
+      "minimum_recovered_derivative_per_day": 4.623878115644305e-06,
+      "minimum_deceased_derivative_per_day": 1.955405999413205e-06,
+      "negative_RD_derivative_entries": 0
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "alternative_rates": [
+    0.5,
+    0.1,
+    0.17142857142857146
+  ],
+  "max_abs_SI_difference": 6.146455566735654e-10,
+  "max_abs_RD_difference": 0.2755041991393734,
+  "interpretation": "With only S and I observed, gamma and omega enter as their sum and cannot be separately identified."
+}

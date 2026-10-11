@@ -1,0 +1,26 @@
+seed 2 Adam 0: loss=0.1029
+seed 2 Adam 2000: loss=7.004e-06
+seed 2 Adam 4000: loss=1.716e-06
+seed 2 Adam 6000: loss=7.732e-07
+{
+  "case": "missing",
+  "seed": 2,
+  "parameters": {
+    "beta": 0.49605880199828634,
+    "gamma": 0.1990812750394945,
+    "omega": 0.07087196685455872
+  },
+  "relative_errors_percent": {
+    "beta": 0.7882396003427328,
+    "gamma": 0.45936248025275905,
+    "omega": 0.779246403617781
+  },
+  "trajectory_rmse": 0.0006113847390401516,
+  "residual_rmse_per_day": 0.00011948911052028251,
+  "residual_max_abs_per_day": 0.00039990235189496515,
+  "conservation_max_abs_error": 3.3306690738754696e-16,
+  "initial_max_abs_error": 0.0,
+  "minimum_compartment": 0.0,
+  "negative_entries": 0,
+  "maximum_compartment": 0.999999
+}
